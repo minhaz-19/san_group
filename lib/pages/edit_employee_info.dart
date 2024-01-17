@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/employee_list.dart';
 import 'package:san_group/pages/my_information.dart';
@@ -455,7 +456,7 @@ class _edit_employee_infoState extends State<edit_employee_info> {
 
     return (_isloading == true)
         ? const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: ProgressBar()),
           )
         : Scaffold(
             backgroundColor: Colors.white,

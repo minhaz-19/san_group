@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:intl/intl.dart';
 
@@ -79,7 +80,7 @@ class _holiday_widgetState extends State<holiday_widget> {
     return (_is_holiday_loading == true)
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: ProgressBar(),
             ),
           )
         : (_is_data_available == false)
@@ -98,7 +99,7 @@ class _holiday_widgetState extends State<holiday_widget> {
                   }
 
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: ProgressBar());
                   }
 
                   return ListView(

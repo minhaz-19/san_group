@@ -1,17 +1,11 @@
 import 'package:badges/badges.dart' as badges;
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/add_holiday.dart';
 import 'package:san_group/holiday.dart';
-import 'package:san_group/authentication/authentication.dart';
 import 'package:san_group/main.dart';
-import 'package:san_group/outside_office_approval.dart';
 import 'package:san_group/pages/add_new_employee.dart';
 import 'package:san_group/pages/attendance_archive.dart';
 import 'package:san_group/pages/attendance_entry.dart';

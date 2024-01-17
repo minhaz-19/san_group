@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:platform_device_id/platform_device_id.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/my_information.dart';
+import 'package:san_group/pages/recoverpassword.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:mac_address/mac_address.dart';
 
 String android_id = '0';
 String? deviceId;
@@ -24,37 +25,89 @@ class _loginState extends State<login> {
   bool _is_loading = false;
   var errorMessage;
   bool obsecure_text = true;
-  String _platformVersion = 'Unknown';
   // our form key
   final _formKey = GlobalKey<FormState>();
   // editing Controller
   final _idEditingController = TextEditingController();
   final passwordController = TextEditingController();
 
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    try {
-      platformVersion = await GetMac.macAddress;
-    } on PlatformException {
-      platformVersion = 'Failed to get Device MAC Address.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
-  }
-
   @override
   void initState() {
-    // TODO: implement initState
+    initialize();
     super.initState();
-    initPlatformState();
+  }
+
+  void initialize() async {
+    setState(() {
+      _is_loading = true;
+    });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var mail = await prefs.getString('email');
+    var pass = await prefs.getString('password');
+    emp_id = await prefs.getString('emp_id');
+    if (mail != null) {
+      try {
+        deviceId = await PlatformDeviceId.getDeviceId;
+        await FirebaseFirestore.instance
+            .collection('id')
+            .doc(emp_id)
+            .get()
+            .then((value) {
+          setState(() {
+            name = value['name'];
+            post = value['post'];
+            email = value['email'];
+            android_id = value['android id'];
+          });
+        });
+        if (android_id != deviceId) {
+          setState(() {
+            _is_loading = false;
+          });
+        } else {
+          await FirebaseAuth.instance
+              .signInWithEmailAndPassword(email: '$mail', password: '$pass')
+              .then((uid) async => {
+                    await FirebaseFirestore.instance
+                        .collection('id')
+                        .doc(emp_id)
+                        .get()
+                        .then((value) {
+                      setState(() {
+                        name = value['name'];
+                        post = value['post'];
+                      });
+                    }),
+                    await SharedPreferences.getInstance().then((prefs) {
+                      prefs.setString('email', email!);
+                      prefs.setString('emp_id', emp_id!);
+                      prefs.setString('post', post!);
+                      prefs.setString('password', password!);
+                    }),
+                    setState(() {
+                      _is_loading = false;
+                    }),
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => my_information()),
+                        (Route<dynamic> route) => false),
+                  });
+        }
+      } on FirebaseAuthException catch (error) {
+        Fluttertoast.showToast(msg: errorMessage!);
+        setState(() {
+          _is_loading = false;
+        });
+      } catch (e) {
+        setState(() {
+          _is_loading = false;
+        });
+      }
+    } else {
+      setState(() {
+        _is_loading = false;
+      });
+    }
   }
 
   @override
@@ -187,7 +240,7 @@ class _loginState extends State<login> {
     return Scaffold(
       body: Center(
         child: _is_loading == true
-            ? Visibility(child: CircularProgressIndicator())
+            ? ProgressBar()
             : SingleChildScrollView(
                 child: Container(
                   // color: Colors.white,
@@ -240,6 +293,25 @@ class _loginState extends State<login> {
                           SizedBox(height: 20),
                           _loginButton,
                           SizedBox(height: 15),
+                          InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const RecoverPassword()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(0, 15, 8, 8),
+                              child: Text(
+                                'Forgot Password?',
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: Theme.of(context).primaryColor),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -262,49 +334,54 @@ class _loginState extends State<login> {
         setState(() {
           _is_loading = true;
         });
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: '$email', password: '$password')
-            .then((uid) async => {
-                  await FirebaseFirestore.instance
-                      .collection('id')
-                      .doc(emp_id)
-                      .get()
-                      .then((value) {
+
+        await FirebaseFirestore.instance
+            .collection('id')
+            .doc(emp_id)
+            .get()
+            .then((value) {
+          setState(() {
+            email = value['email'];
+            android_id = value['android id'];
+          });
+        });
+        if (android_id != deviceId) {
+          Fluttertoast.showToast(
+              msg: "You are not authorized to login from this device");
+          setState(() {
+            _is_loading = false;
+          });
+        } else {
+          await FirebaseAuth.instance
+              .signInWithEmailAndPassword(
+                  email: '$email', password: '$password')
+              .then((uid) async => {
+                    await FirebaseFirestore.instance
+                        .collection('id')
+                        .doc(emp_id)
+                        .get()
+                        .then((value) {
+                      setState(() {
+                        name = value['name'];
+                        post = value['post'];
+                      });
+                    }),
+                    await SharedPreferences.getInstance().then((prefs) {
+                      prefs.setString('email', email!);
+                      prefs.setString('emp_id', emp_id!);
+                      prefs.setString('post', post!);
+                      prefs.setString('password', password!);
+                    }),
+                    Fluttertoast.showToast(msg: "Login Successful"),
                     setState(() {
-                      name = value['name'];
-                      post = value['post'];
-                      android_id = value['android id'];
-                    });
-                  }),
-                  if (deviceId == android_id)
-                    {
-                      Authcontrol.AutoLogin(emp_id,
-                          "done"), // used to keep users logged in after re-openning the app
-                      Fluttertoast.showToast(msg: "Login Successful"),
-                      // Navigator.of(context).pop(),
-
-                      setState(() {
-                        _is_loading = false;
-                      }),
-
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => my_information()),
-                          (Route<dynamic> route) => false),
-                    }
-                  else
-                    {
-                      setState(() {
-                        _is_loading = false;
-                      }),
-                      Fluttertoast.showToast(
-                          msg:
-                              "User $emp_id is not allowed to log in using this mobile"),
-                      FirebaseAuth.instance.signOut(),
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const login())),
-                    }
-                });
+                      _is_loading = false;
+                    }),
+                    Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(
+                            builder: (context) => my_information()),
+                        (Route<dynamic> route) => false),
+                  });
+        }
       } on FirebaseAuthException catch (error) {
         switch (error.code) {
           case "invalid-email":
@@ -335,15 +412,5 @@ class _loginState extends State<login> {
         });
       }
     }
-  }
-}
-
-class Authcontrol {
-  // this is used to keep users signed in when app reopens after it closes
-  static AutoLogin(emp_id, String value) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setString('emp_id', emp_id);
-    prefs.setString('complete', value);
   }
 }

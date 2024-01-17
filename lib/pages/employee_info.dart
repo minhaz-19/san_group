@@ -226,22 +226,7 @@ class _employee_infoState extends State<employee_info> {
                                               _is_loading = true;
                                             });
                                             Navigator.of(context).pop();
-                                            await FirebaseAuth.instance
-                                                .signOut();
-                                            await FirebaseAuth.instance
-                                                .signInWithEmailAndPassword(
-                                                    email:
-                                                        '${editing_employee_id.toLowerCase()}@sangroup.com',
-                                                    password: '123456')
-                                                .then((value) => FirebaseAuth
-                                                    .instance.currentUser!
-                                                    .delete());
-
-                                            await FirebaseAuth.instance
-                                                .signInWithEmailAndPassword(
-                                                    email:
-                                                        '${emp_id!.toLowerCase()}@sangroup.com',
-                                                    password: '123456');
+                                            
 
                                             await FirebaseFirestore.instance
                                                 .collection('id')

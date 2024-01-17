@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/pages/my_information.dart';
 
 class add_new_office extends StatefulWidget {
@@ -82,9 +83,7 @@ class _add_new_officeState extends State<add_new_office> {
   Widget build(BuildContext context) {
     return (_is_loading == true)
         ? const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: ProgressBar(),
           )
         : Scaffold(
             appBar: AppBar(

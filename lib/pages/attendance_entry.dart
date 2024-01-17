@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intl/intl.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/my_information.dart';
@@ -486,7 +487,7 @@ class _attendance_entryState extends State<attendance_entry> {
     return (_is_loading == true)
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: ProgressBar(),
             ),
           )
         : Scaffold(

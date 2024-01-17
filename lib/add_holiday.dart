@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/my_information.dart';
 
@@ -49,7 +50,7 @@ class _add_holiday_widgetState extends State<add_holiday_widget> {
   Widget build(BuildContext context) {
     return (_is_add_holiday_loading == true)
         ? Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            body: Center(child: ProgressBar()),
           )
         : Scaffold(
             body: Padding(

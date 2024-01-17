@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:intl/intl.dart';
@@ -71,7 +72,7 @@ class _tour_approval_widgetState extends State<tour_approval_widget> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: ProgressBar());
         }
 
         return ListView(
@@ -291,7 +292,7 @@ class _tour_approval_widgetState extends State<tour_approval_widget> {
                           ),
                         ),
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                            ProgressBar(),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                       title: Text(

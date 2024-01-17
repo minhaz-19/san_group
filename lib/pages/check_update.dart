@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 
 int app_version = 4;
@@ -49,7 +50,7 @@ class _check_updateState extends State<check_update> {
     return (_is_loading == true)
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: ProgressBar(),
             ),
           )
         : Scaffold(

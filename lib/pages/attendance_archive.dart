@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:san_group/component/progressbar.dart';
 
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
@@ -58,7 +59,7 @@ class _attendance_archive_widgetState extends State<attendance_archive_widget> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: ProgressBar());
         }
 
         return ListView(

@@ -2,7 +2,6 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:san_group/pages/login.dart';
-import 'package:san_group/pages/my_information.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 String? name, email, emp_id, image, password, post, brunch, user_is_verifyed;
@@ -15,7 +14,6 @@ Future<void> main() async {
 
   password = prefs.getString('password');
   emp_id = prefs.getString('emp_id');
-  user_is_verifyed = prefs.getString('complete');
 
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   // var mail = prefs.getString('email');
@@ -49,7 +47,7 @@ class MyApp extends StatelessWidget {
               ),
             ),
           ),
-          nextScreen: (user_is_verifyed == null) ? login() : my_information(),
+          nextScreen:login(),
           splashIconSize: 450,
           splashTransition: SplashTransition.scaleTransition,
           // pageTransitionType:  Animation(),

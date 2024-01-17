@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/employee_info.dart';
 
@@ -81,7 +82,7 @@ class _employee_list_widgetState extends State<employee_list_widget> {
         }
 
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const Center(child: ProgressBar());
         }
 
         return ListView(
@@ -126,7 +127,7 @@ class _employee_list_widgetState extends State<employee_list_widget> {
                           ),
                         ),
                         placeholder: (context, url) =>
-                            CircularProgressIndicator(),
+                            ProgressBar(),
                         errorWidget: (context, url, error) => Icon(Icons.error),
                       ),
                       title: Text(

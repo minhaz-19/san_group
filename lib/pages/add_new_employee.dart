@@ -8,6 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/my_information.dart';
 
@@ -148,6 +149,7 @@ class _add_new_employeeState extends State<add_new_employee> {
   final nameEditingController = TextEditingController();
   final mobileEditingController = TextEditingController();
   final android_id_EditingController = TextEditingController();
+  final emailcontroller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -185,6 +187,48 @@ class _add_new_employeeState extends State<add_new_employee> {
           ),
           contentPadding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
           hintText: "Name",
+          hintStyle: const TextStyle(
+              fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black45),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black45),
+            borderRadius: BorderRadius.circular(15),
+          ),
+        ));
+
+    // email field
+    final emailfield = TextFormField(
+        autofocus: false,
+        controller: emailcontroller,
+        keyboardType: TextInputType.emailAddress,
+        validator: (value) {
+          RegExp regex = RegExp(r'^.{3,}$');
+          if (value!.isEmpty) {
+            return ("Email cannot be Empty");
+          }
+          if (!regex.hasMatch(value)) {
+            return ("Enter Valid email(Min. 3 Character)");
+          }
+          return null;
+        },
+        onSaved: (value) {
+          emailcontroller.text = value!;
+        },
+        textInputAction: TextInputAction.next,
+        style: const TextStyle(
+            fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black45),
+        cursorColor: Colors.black45,
+        decoration: InputDecoration(
+          focusColor: Colors.black45,
+          iconColor: Colors.black45,
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15),
+              borderSide: BorderSide(color: Colors.black)),
+          prefixIcon: const Icon(
+            Icons.email,
+            color: Colors.black45,
+          ),
+          contentPadding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+          hintText: "Email",
           hintStyle: const TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black45),
           border: OutlineInputBorder(
@@ -302,7 +346,7 @@ class _add_new_employeeState extends State<add_new_employee> {
         ),
         isExpanded: true,
         hint: const Text(
-          'Select Attendance Approver',
+          'Attendance Approver',
           style: TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.black45),
         ),
@@ -493,9 +537,7 @@ class _add_new_employeeState extends State<add_new_employee> {
         ));
 
     return (_isloading == true)
-        ? Scaffold(
-            body: Center(child: CircularProgressIndicator()),
-          )
+        ? Scaffold(body: ProgressBar())
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
@@ -537,6 +579,8 @@ class _add_new_employeeState extends State<add_new_employee> {
                           SizedBox(height: 20),
                           _auto_id,
                           SizedBox(height: 20),
+                          emailfield,
+                          SizedBox(height: 20),
                           select_office,
                           SizedBox(height: 20),
                           select_post,
@@ -570,7 +614,7 @@ class _add_new_employeeState extends State<add_new_employee> {
           });
           await _auth
               .createUserWithEmailAndPassword(
-                  email: id + '@sangroup.com', password: '$_password')
+                  email: emailcontroller.text, password: '$_password')
               .then((value) async => {
                     setState(() {
                       file_name =
@@ -591,6 +635,9 @@ class _add_new_employeeState extends State<add_new_employee> {
                   })
               .catchError((e) {
             Fluttertoast.showToast(msg: e!.message);
+            setState(() {
+              _isloading = false;
+            });
           });
         } on FirebaseAuthException catch (error) {
           setState(() {
@@ -632,7 +679,6 @@ class _add_new_employeeState extends State<add_new_employee> {
     // sedning these values
 
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-    User? user = _auth.currentUser;
 
     UserModel userModel = UserModel();
 
@@ -645,6 +691,7 @@ class _add_new_employeeState extends State<add_new_employee> {
     userModel.image = download_url;
     userModel.attendance_approver = _attendance_approver_value;
     userModel.device_id = android_id_EditingController.text;
+    userModel.email = emailcontroller.text;
 
     await firebaseFirestore
         .collection("id")
@@ -670,6 +717,7 @@ class UserModel {
   String? image;
   String? attendance_approver;
   String? device_id;
+  String? email;
 
   UserModel(
       {this.uid,
@@ -679,6 +727,7 @@ class UserModel {
       this.office,
       this.mobile,
       this.attendance_approver,
+      this.email,
       this.device_id});
 
   // sending data to our server
@@ -690,6 +739,7 @@ class UserModel {
       'post': post,
       'image': image,
       'mobile': mobile,
+      'email': email,
       'attendance approver': attendance_approver,
       'android id': device_id,
     };

@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/my_information.dart';
@@ -142,7 +143,7 @@ class _tour_entryState extends State<tour_entry> {
     return (_is_loading == true)
         ? const Scaffold(
             body: Center(
-              child: CircularProgressIndicator(),
+              child: ProgressBar(),
             ),
           )
         : Scaffold(
