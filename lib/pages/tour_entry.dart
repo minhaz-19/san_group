@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:san_group/drawer.dart';
@@ -149,6 +147,7 @@ class _tour_entryState extends State<tour_entry> {
           )
         : Scaffold(
             appBar: AppBar(
+              foregroundColor: Colors.white,
               backgroundColor: Colors.blueGrey,
               title: const Text('Tour Entry',
                   style: TextStyle(fontWeight: FontWeight.bold)),

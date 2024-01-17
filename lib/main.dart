@@ -1,9 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:san_group/pages/login.dart';
 import 'package:san_group/pages/my_information.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +30,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        // Define your theme properties here
+        primaryColor: Colors.blueGrey,
+
+        // Add more theme properties as needed
+      ),
       home: AnimatedSplashScreen(
           animationDuration: Duration(milliseconds: 500),
           duration: 500,

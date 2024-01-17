@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:san_group/pages/leave_approval.dart';
 import 'package:san_group/outside_office_approval.dart';
-import 'package:san_group/pages/leave_entry.dart';
 import 'package:san_group/pages/tour_approval.dart';
 
 class my_team extends StatefulWidget {

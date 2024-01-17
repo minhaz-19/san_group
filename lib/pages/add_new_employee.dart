@@ -8,9 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:san_group/drawer.dart';
-import 'package:san_group/pages/login.dart';
 import 'package:san_group/pages/my_information.dart';
 
 List<String> post_list = ['HR', 'GM', 'Zonal Head', 'Executive'];
@@ -501,6 +499,7 @@ class _add_new_employeeState extends State<add_new_employee> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              foregroundColor: Colors.white,
               title: Text("Add New Employee"),
               centerTitle: true,
               backgroundColor: Colors.blueGrey,

@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
-import 'package:san_group/main.dart';
 import 'package:intl/intl.dart';
 
 bool _is_holiday_loading = false;
@@ -19,6 +17,7 @@ class _holidayState extends State<holiday> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text(
             'Holidays of ${DateFormat.yMMMM('en_US').format(DateTime.now())}',
             style: TextStyle(fontWeight: FontWeight.bold)),

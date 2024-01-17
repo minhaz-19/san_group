@@ -17,6 +17,7 @@ class _attendance_archiveState extends State<attendance_archive> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text('Attendance Archive',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,

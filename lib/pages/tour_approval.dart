@@ -1,8 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
@@ -21,6 +19,7 @@ class _tour_approvalState extends State<tour_approval> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text('Tour approvals',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,

@@ -3,16 +3,11 @@ import 'dart:ui';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/ask_to_update.dart';
-import 'package:san_group/pages/attendance_entry.dart';
 import 'package:san_group/pages/check_update.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -291,6 +286,7 @@ class _my_informationState extends State<my_information> {
               )
             : Scaffold(
                 appBar: AppBar(
+                  foregroundColor: Colors.white,
                   title: const Text(
                     'SAN GROUP',
                     style: TextStyle(

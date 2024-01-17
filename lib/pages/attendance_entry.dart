@@ -1,15 +1,11 @@
-import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/foundation.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:intl/intl.dart';
-import 'package:ntp/ntp.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/my_information.dart';
@@ -495,6 +491,7 @@ class _attendance_entryState extends State<attendance_entry> {
           )
         : Scaffold(
             appBar: AppBar(
+              foregroundColor: Colors.white,
               backgroundColor: Colors.blueGrey,
               title: const Text('Attendance In/Out',
                   style: TextStyle(fontWeight: FontWeight.bold)),

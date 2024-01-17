@@ -2,12 +2,9 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/my_information.dart';
 
 class add_new_office extends StatefulWidget {
@@ -91,6 +88,7 @@ class _add_new_officeState extends State<add_new_office> {
           )
         : Scaffold(
             appBar: AppBar(
+              foregroundColor: Colors.white,
               backgroundColor: Colors.blueGrey,
               title: const Text('Add New Office',
                   style: TextStyle(fontWeight: FontWeight.bold)),

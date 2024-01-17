@@ -1,16 +1,11 @@
-import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/edit_employee_info.dart';
 import 'package:san_group/pages/employee_list.dart';
@@ -73,6 +68,7 @@ class _employee_infoState extends State<employee_info> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: Text('Information of $editing_employee_id',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,

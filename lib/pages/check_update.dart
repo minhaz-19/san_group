@@ -1,8 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
 
 int app_version = 4;
@@ -57,6 +54,7 @@ class _check_updateState extends State<check_update> {
           )
         : Scaffold(
             appBar: AppBar(
+              foregroundColor: Colors.white,
               backgroundColor: Colors.blueGrey,
               title: const Text('Check Update',
                   style: TextStyle(fontWeight: FontWeight.bold)),

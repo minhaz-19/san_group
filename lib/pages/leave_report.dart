@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:intl/intl.dart';
@@ -17,6 +16,7 @@ class _leave_reportState extends State<leave_report> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text('leave Report',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,

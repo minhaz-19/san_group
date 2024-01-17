@@ -19,8 +19,11 @@ class _add_holidayState extends State<add_holiday> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add a new holiday',
-            style: TextStyle(fontWeight: FontWeight.bold)),
+        foregroundColor: Colors.white,
+        title: Text(
+          'Add a new holiday',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         backgroundColor: Colors.blueGrey,
       ),

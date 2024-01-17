@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
@@ -168,6 +166,7 @@ class _leave_entryState extends State<leave_entry> {
           )
         : Scaffold(
             appBar: AppBar(
+              foregroundColor: Colors.white,
               backgroundColor: Colors.blueGrey,
               title: const Text('Leave Entry',
                   style: TextStyle(fontWeight: FontWeight.bold)),

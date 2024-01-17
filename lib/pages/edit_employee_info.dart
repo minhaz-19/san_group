@@ -8,7 +8,6 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/employee_list.dart';
 import 'package:san_group/pages/my_information.dart';
@@ -461,6 +460,7 @@ class _edit_employee_infoState extends State<edit_employee_info> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              foregroundColor: Colors.white,
               title: Text("Edit Info of $editing_employee_id"),
               centerTitle: true,
               backgroundColor: Colors.blueGrey,

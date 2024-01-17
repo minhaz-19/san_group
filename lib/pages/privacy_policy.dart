@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:san_group/drawer.dart';
 
 class privacy_policy extends StatefulWidget {
@@ -15,6 +13,7 @@ class _privacy_policyState extends State<privacy_policy> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          foregroundColor: Colors.white,
           backgroundColor: Colors.blueGrey,
           title: const Text('Privacy Policy',
               style: TextStyle(fontWeight: FontWeight.bold)),

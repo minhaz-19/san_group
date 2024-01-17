@@ -1,7 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:san_group/drawer.dart';
 import 'package:san_group/pages/add_new_office.dart';
 
@@ -17,6 +15,7 @@ class _office_listState extends State<office_list> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text('Office List',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,

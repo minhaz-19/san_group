@@ -2,14 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'package:san_group/drawer.dart';
 import 'package:san_group/main.dart';
 import 'package:san_group/pages/my_information.dart';
-import 'package:san_group/pages/otp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mac_address/mac_address.dart';
 

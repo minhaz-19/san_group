@@ -1,11 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:san_group/drawer.dart';
-import 'package:intl/intl.dart';
-import 'package:san_group/main.dart';
 import 'package:san_group/pages/employee_info.dart';
 
 String editing_employee_name = '';
@@ -28,6 +24,7 @@ class _employee_listState extends State<employee_list> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
         title: const Text('Employee List',
             style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
