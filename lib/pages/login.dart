@@ -383,6 +383,7 @@ class _loginState extends State<login> {
                   });
         }
       } on FirebaseAuthException catch (error) {
+        // print(error);
         switch (error.code) {
           case "invalid-email":
             errorMessage = "Your id appears to be malformed.";

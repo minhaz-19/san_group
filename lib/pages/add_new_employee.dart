@@ -612,6 +612,8 @@ class _add_new_employeeState extends State<add_new_employee> {
           setState(() {
             _isloading = true;
           });
+          // log out the user
+          await FirebaseAuth.instance.signOut();
           await _auth
               .createUserWithEmailAndPassword(
                   email: emailcontroller.text, password: '$_password')

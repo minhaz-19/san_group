@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:san_group/component/progressbar.dart';
 import 'package:san_group/drawer.dart';
 
-int app_version = 4;
+int app_version = 1;
 
 class check_update extends StatefulWidget {
   const check_update({super.key});
